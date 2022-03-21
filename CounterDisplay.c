@@ -9,7 +9,7 @@
 
 /*-----------------------------------------------------------------------------------
 
-	You can’t display two digits or more directly on LCD. Suppose number is 15, then 1st
+	You canâ€™t display two digits or more directly on LCD. Suppose number is 15, then 1st
 
 	you have to send 1 and then 5 to LCD. We know that while sending numbers to LCD, we 
 	
@@ -34,7 +34,7 @@
 /*------------------------------------------------------------------------------------------
 	Here is the logic.  
 
-	Let’s say you have collected number in count_val variable of type unsigned int and i is temporary variable of type unsigned char.  
+	Letâ€™s say you have collected number in count_val variable of type unsigned int and i is temporary variable of type unsigned char.  
 
 	count_val = 15;        
 
@@ -56,19 +56,19 @@
 ---------------------------------------------------------------------------------------------*/
 
 
-#include<reg52.h>												/* Register address header file */
+#include<reg52.h>		/* Register address header file */
 
-sbit counter=P3^4;											/* Rename input pin as counter */
+sbit counter=P3^4;		/* Rename input pin as counter */
 
-sbit RS=P2^0;														/* Rename register select pin as a RS */														
-sbit RW=P2^1;														/* Rename read/write pin as a RW */
-sbit E=P2^2;														/* Rename enable pin as a E */
+sbit RS=P2^0;			/* Rename register select pin as a RS */														
+sbit RW=P2^1;			/* Rename read/write pin as a RW */
+sbit E=P2^2;			/* Rename enable pin as a E */
 
 void send_command(unsigned int command_value ) ;			/* command function prototype */
-void send_data(unsigned int data_value) ;							/* data function prototype */
-void ms_delay( unsigned int time);										/* delay function prototype */
-unsigned char i;																			/* global variable i declare */
-unsigned int count_val;																/* global variable count_val declare */			
+void send_data(unsigned int data_value) ;  				/* data function prototype */
+void ms_delay( unsigned int time);					/* delay function prototype */
+unsigned char i;			   				/* global variable i declare */
+unsigned int count_val;							/* global variable count_val declare */			
 void main()
 {
         
@@ -102,13 +102,13 @@ while(!TF0) /* monitoring TF0 flag */
     
     count_val = TL0;    
  
-    i = count_val/10; /* Get the Ten's place */
-  /*     i + 0x30;             Convert it to ASCII */
-  send_data(i + 0x30);            /* Display Tens place */
+    i = count_val/10; 	    /* Get the Ten's place */
+  			    /*     i + 0x30;  Convert it to ASCII */
+  send_data(i + 0x30);      /* Display Tens place */
       
-    i = count_val%10 ;            /* Get the unit place */
-  //     i + 0x30;             /* Convert it to ASCII */
-  send_data(i + 0x30);    /* Display unit place */
+    i = count_val%10 ;      /* Get the unit place */
+  //     i + 0x30;          /* Convert it to ASCII */
+  send_data(i + 0x30);      /* Display unit place */
     
     if (count_val == 100)   /* restricting count 00 to 99 */
     {
